@@ -344,18 +344,25 @@ public class HomePageController implements Initializable
 
     public void loadHelpCenter() throws Exception
     {
-
-        try
+        if (Main.loggedIn)
         {
-            URL url = new File("src/main/java/FXML/HelpcenterFXML.fxml").toURL();
-            Parent root = FXMLLoader.load(url);
-            open_stage.setScene(new Scene(root));
-            open_stage.setTitle("HelpCenter");
-            open_stage.show();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
+            try
+            {
+                URL url = new File("src/main/java/FXML/HelpcenterFXML.fxml").toURL();
+                Parent root = FXMLLoader.load(url);
+                open_stage.setScene(new Scene(root));
+                open_stage.setTitle("HelpCenter");
+                open_stage.show();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
+        else
+        {
+            System.out.print("Login first!\n");
+        }
+
     }
 
     @FXML private TextField textfield_search;

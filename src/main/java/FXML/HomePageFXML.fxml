@@ -41,7 +41,8 @@
                                     <Button fx:id="button_signup" alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="1920.0" mnemonicParsing="false" onAction="#signUp" text="Sign Up" />
                                  </children>
                               </HBox>
-                              <Button layoutX="1166.0" layoutY="39.0" mnemonicParsing="false" onAction="#loadHelpCenter" text="HelpCenter" />
+                              <Button layoutX="1166.0" layoutY="39.0" mnemonicParsing="false" onAction="#loadHelpCenter" text="Need Help" />
+                              <Button layoutX="1166.0" layoutY="39.0" mnemonicParsing="false"  text="HelpCenter" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
@@ -118,61 +119,61 @@
                                  </font>
                               </Label>
                               <ScrollPane hbarPolicy="NEVER">
-                                <content>
-                                  <AnchorPane minHeight="-Infinity" minWidth="-Infinity">
+                                 <content>
+                                    <AnchorPane minHeight="-Infinity" minWidth="-Infinity">
                                        <children>
-                              <VBox>
-                                 <children>
-                                    <CheckBox mnemonicParsing="false" text="Tennis">
-                                       <VBox.margin>
-                                          <Insets bottom="2.0" />
-                                       </VBox.margin>
-                                    </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="Schwimmen">
-                                       <VBox.margin>
-                                          <Insets bottom="2.0" />
-                                       </VBox.margin>
-                                    </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="Schifahren">
+                                          <VBox>
+                                             <children>
+                                                <CheckBox mnemonicParsing="false" text="Tennis">
                                                    <VBox.margin>
                                                       <Insets bottom="2.0" />
                                                    </VBox.margin>
                                                 </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="Essen">
-                                       <VBox.margin>
-                                          <Insets bottom="2.0" />
-                                       </VBox.margin>
-                                    </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="Wandern">
-                                       <VBox.margin>
-                                          <Insets bottom="2.0" />
-                                       </VBox.margin>
-                                    </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="Am Meer">
+                                                <CheckBox mnemonicParsing="false" text="Schwimmen">
                                                    <VBox.margin>
                                                       <Insets bottom="2.0" />
                                                    </VBox.margin>
                                                 </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="Sauna">
-                                       <VBox.margin>
-                                          <Insets bottom="2.0" />
-                                       </VBox.margin>
-                                    </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="SPA">
-                                       <VBox.margin>
-                                          <Insets bottom="2.0" />
-                                       </VBox.margin>
-                                    </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="Solarium">
+                                                <CheckBox mnemonicParsing="false" text="Schifahren">
                                                    <VBox.margin>
                                                       <Insets bottom="2.0" />
                                                    </VBox.margin>
                                                 </CheckBox>
-                                 </children>
-                              </VBox>
+                                                <CheckBox mnemonicParsing="false" text="Essen">
+                                                   <VBox.margin>
+                                                      <Insets bottom="2.0" />
+                                                   </VBox.margin>
+                                                </CheckBox>
+                                                <CheckBox mnemonicParsing="false" text="Wandern">
+                                                   <VBox.margin>
+                                                      <Insets bottom="2.0" />
+                                                   </VBox.margin>
+                                                </CheckBox>
+                                                <CheckBox mnemonicParsing="false" text="Am Meer">
+                                                   <VBox.margin>
+                                                      <Insets bottom="2.0" />
+                                                   </VBox.margin>
+                                                </CheckBox>
+                                                <CheckBox mnemonicParsing="false" text="Sauna">
+                                                   <VBox.margin>
+                                                      <Insets bottom="2.0" />
+                                                   </VBox.margin>
+                                                </CheckBox>
+                                                <CheckBox mnemonicParsing="false" text="SPA">
+                                                   <VBox.margin>
+                                                      <Insets bottom="2.0" />
+                                                   </VBox.margin>
+                                                </CheckBox>
+                                                <CheckBox mnemonicParsing="false" text="Solarium">
+                                                   <VBox.margin>
+                                                      <Insets bottom="2.0" />
+                                                   </VBox.margin>
+                                                </CheckBox>
+                                             </children>
+                                          </VBox>
                                        </children>
                                     </AnchorPane>
-                                </content>
+                                 </content>
                               </ScrollPane>
 
 

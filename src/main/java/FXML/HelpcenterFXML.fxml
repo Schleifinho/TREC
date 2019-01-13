@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HelpCenterController">
    <children>
       <StackPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -21,12 +21,12 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField promptText="Subject">
+                  <TextField fx:id="subject" promptText="Subject">
                      <VBox.margin>
                         <Insets bottom="3.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextArea promptText="Complains">
+                  <TextArea fx:id="complains" promptText="Complains">
                      <VBox.margin>
                         <Insets bottom="2.0" />
                      </VBox.margin>
@@ -35,7 +35,7 @@
                      <children>
                         <HBox alignment="TOP_RIGHT" spacing="5.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Send" />
+                              <Button mnemonicParsing="false" onAction="#sendHelp" text="Sended" />
                            </children>
                         </HBox>
                      </children>

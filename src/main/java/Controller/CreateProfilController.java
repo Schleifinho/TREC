@@ -120,6 +120,8 @@ public class CreateProfilController implements Initializable
 
                 setInterests(collection);
 
+                Stage stage = (Stage) id_email.getScene().getWindow();
+                stage.close();
 
             }
             catch (Exception e) {}
@@ -205,6 +207,8 @@ public class CreateProfilController implements Initializable
                 collection.deleteOne(user);
 
                 System.out.print("Deleted Account");
+                Main.loggedIn = false;
+                Main.loggedInPerson.clear();
                 Stage stage = (Stage) id_email.getScene().getWindow();
                 stage.close();
             }
