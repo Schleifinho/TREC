@@ -6,6 +6,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -17,11 +18,12 @@ import org.bson.types.ObjectId;
 import java.io.File;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
 import static com.mongodb.client.model.Filters.eq;
 
 
-public class AnswerController
+public class AnswerController implements Initializable
 {
     private static ObjectId complainID;
 
@@ -34,18 +36,32 @@ public class AnswerController
         complainID = id;
     }
 
-    @FXML private void sendAnswer()
+    public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        MongoClient mongoClient = MongoClients.create();
+        MongoClient mongo = MongoClients.create();
         try
         {
-            MongoDatabase db = mongoClient.getDatabase("OAD");
+            MongoDatabase db = mongo.getDatabase("OAD");
             MongoCollection<Document> collection = db.getCollection("Help");
-            System.out.print(complainID + "\n");
             Document complain = collection.find(eq("_id", complainID)).first();
 
             text_subject.setText(complain.get("Subject").toString());
             text_complain.setText(complain.get("Complain").toString());
+            text_complain.setMinHeight(text_complain.getText().length() / 30 * 17);
+        }
+        catch (Exception e){System.out.print(e + "\n");}
+        finally
+        {
+            mongo.close();
+        }
+    }
+    @FXML private void sendAnswer()
+    {
+        MongoClient mongo = MongoClients.create();
+        try
+        {
+            MongoDatabase db = mongo.getDatabase("OAD");
+            MongoCollection<Document> collection = db.getCollection("Help");
 
             Bson filter = new Document("_id", complainID);
             Bson newValue = new Document("Answer", text_answer.getText());
@@ -57,7 +73,7 @@ public class AnswerController
         catch (Exception e){System.out.print(e + "\n");}
         finally
         {
-            mongoClient.close();
+            mongo.close();
         }
     }
 

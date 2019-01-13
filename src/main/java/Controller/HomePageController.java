@@ -65,7 +65,6 @@ public class HomePageController implements Initializable
         List<Document> documents = (List<Document>) collection.find().into(
                 new ArrayList<Document>());
 
-
         printHotels(documents);
 
     }
@@ -154,6 +153,7 @@ public class HomePageController implements Initializable
         }
         if(temp.length() > 2)
             temp = temp.substring(0, temp.length() - 2);
+
         Label facilities = new Label(temp);
 
         interestsBox.getChildren().add(interestsTitle);
@@ -190,7 +190,6 @@ public class HomePageController implements Initializable
         }
 
         return "/image/" + imageID.toString()+".jpg";
-
     }
 
     @FXML

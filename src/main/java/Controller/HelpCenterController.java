@@ -67,7 +67,6 @@ public class HelpCenterController implements Initializable
             Admin = false;
         }
 
-        System.out.print(documents);
         fillListView(documents);
     }
 
@@ -113,14 +112,14 @@ public class HelpCenterController implements Initializable
         HBox hBox = new HBox();
         VBox vBox = new VBox();
         hBox.setId(document.get("_id").toString());
-        vBox.setMinWidth(600);
+        vBox.setMinWidth(570);
         comlainID = (ObjectId)document.get("_id");
 
         Label subject = new Label(document.get("Subject").toString());
         subject.setStyle("-fx-font-weight: bold;"+"-fx-font-size: 14");
 
         Label complain = new Label(document.get("Complain").toString());
-        complain.setMaxWidth(400);
+        complain.setMaxWidth(250);
         complain.setWrapText(true);
 
         Label answer = new Label();
@@ -137,7 +136,6 @@ public class HelpCenterController implements Initializable
         if(Main.loggedIn && (Main.loggedInPerson.getId().equals(document.get("WriterID"))
                 || Main.loggedInPerson.getRole().equals("Admin")))
         {
-            System.out.print("My Complain\n");
             final Button delete = new Button();
             HBox alignmentBox = new HBox();
             alignmentBox.getChildren().add(delete);
@@ -152,9 +150,7 @@ public class HelpCenterController implements Initializable
             {
                 public void handle(ActionEvent e)
                 {
-                    System.out.print("Delete Clicked\n");
                     writerID = (ObjectId) document.get("WriterID");
-                    System.out.print(writerID +"\n");
                     deleteRating();
                 }
             });
