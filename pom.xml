@@ -30,5 +30,13 @@
             <version>1.6.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.lynden/GMapsFX -->
+        <dependency>
+            <groupId>com.lynden</groupId>
+            <artifactId>GMapsFX</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+
+
     </dependencies>
 </project>

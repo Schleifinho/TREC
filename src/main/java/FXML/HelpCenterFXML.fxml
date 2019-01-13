@@ -21,14 +21,14 @@
                <children>
                   <Label text="My Complains:">
                      <HBox.margin>
-                        <Insets left="5.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
                </children>
             </HBox>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="595.0">
                <children>
-                  <ListView fx:id="listView" onMouseClicked="#onListViewClick" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <ListView fx:id="listView" onMouseClicked="#onListViewClick" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                </children>
             </AnchorPane>
             <HBox alignment="TOP_RIGHT">

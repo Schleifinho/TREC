@@ -35,7 +35,6 @@ import org.bson.types.ObjectId;
 
 import static com.mongodb.client.model.Filters.eq;
 
-import javax.print.Doc;
 
 public class HomePageController implements Initializable
 {

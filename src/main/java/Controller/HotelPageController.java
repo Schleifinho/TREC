@@ -1,5 +1,8 @@
 package Controller;
 
+import com.lynden.gmapsfx.GoogleMapView;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -7,6 +10,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,14 +23,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.bson.Document;
@@ -36,7 +41,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -44,7 +48,6 @@ import static com.mongodb.client.model.Filters.eq;
 
 public class HotelPageController implements Initializable
 {
-
     private Stage hotel_stage;
     private static ObjectId hotelID;
     private static ObjectId ownerID;
@@ -192,6 +195,7 @@ public class HotelPageController implements Initializable
 
         fillRatings();
     }
+
 
     private String getFile(ObjectId imageID)
     {
@@ -452,6 +456,26 @@ public class HotelPageController implements Initializable
         {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void printMap()
+    {
+        Stage map_stage = new Stage();
+        WebView browser = new WebView();
+
+        WebEngine webEngine = browser.getEngine();
+        System.out.print("\n" + label_address.getText());
+
+        webEngine.load("https://www.google.com/maps/place/" + label_address.getText());
+
+        StackPane root = new StackPane();
+        root.getChildren().add(browser);
+
+        map_stage.setScene(new Scene(root));
+        map_stage.setMaximized(true);
+        map_stage.show();
+
     }
 }
 

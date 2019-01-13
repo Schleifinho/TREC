@@ -113,7 +113,6 @@ public class HelpCenterController implements Initializable
         HBox hBox = new HBox();
         VBox vBox = new VBox();
         hBox.setId(document.get("_id").toString());
-        hBox.setMinWidth(350);
         vBox.setMinWidth(600);
         comlainID = (ObjectId)document.get("_id");
 

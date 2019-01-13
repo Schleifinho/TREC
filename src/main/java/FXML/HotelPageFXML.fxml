@@ -76,7 +76,7 @@
                                     <Insets bottom="2.0" />
                                  </VBox.margin>
                               </ListView>
-                              <Label text="Karte">
+                              <Label text="Map">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -87,6 +87,8 @@
                                     <Insets bottom="5.0" top="5.0" />
                                  </VBox.margin>
                               </Label>
+                              <Button mnemonicParsing="false" text="Show Map" onAction="#printMap"/>
+
                               <VBox fx:id="vbox_stats" alignment="CENTER" fillWidth="false" maxHeight="0.0" maxWidth="0.0" visible="false">
                                  <children>
                                     <Label maxHeight="2.0" minHeight="2.0" minWidth="500.0" style="-fx-background-color: black;">
