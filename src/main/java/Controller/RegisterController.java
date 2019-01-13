@@ -1,18 +1,14 @@
-import Objects.Person;
+package Controller;
+
 import com.mongodb.client.*;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.bson.Document;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Date;

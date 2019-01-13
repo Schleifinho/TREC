@@ -1,3 +1,5 @@
+package Controller;
+
 import Objects.Person;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,7 @@ public class Main extends Application{
     {
 
         URL url = new File("src/main/java/FXML/HomePageFXML.fxml").toURL();
+        System.out.print(url +"\n");
         Parent root = FXMLLoader.load(url);
 
         Scene scene = new Scene(root);
