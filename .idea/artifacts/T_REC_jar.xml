@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="T REC:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/T_REC_jar</output-path>
+    <root id="archive" name="T REC.jar">
+      <element id="module-output" name="T REC" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/mongodb/bson/3.9.1/bson-3.9.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/share/java/openjfx/lib/packager.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/share/java/openjfx/lib/javafx-mx.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/share/java/openjfx/lib/ant-javafx.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/mongodb/mongodb-driver-sync/3.9.1/mongodb-driver-sync-3.9.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/mongodb/mongodb-driver-core/3.9.1/mongodb-driver-core-3.9.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/share/java/openjfx/jre/lib/jfxswt.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

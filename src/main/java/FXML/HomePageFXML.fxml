@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="600.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomePageController">
+   <children>
+      <StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="300.0" minWidth="500.0">
+               <top>
+                  <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                 <children>
+                                    <Button id="button_profil" maxHeight="64.0" maxWidth="64.0" minHeight="48.0" minWidth="48.0" mnemonicParsing="false" onAction="#editProfil" style="-fx-text-fill: transparent; -fx-border-fill: transparent;" styleClass="crazyButton" text="Profil" />
+                                    <Button id="button_create_hotel" mnemonicParsing="false" onAction="#createHotel" prefHeight="15.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-border-fill: transparent; -fx-padding: -2;" styleClass="crazyButton" text="new Hotel">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <Label fx:id="label" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="1.0" text="Homepage" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="TOP_RIGHT" layoutX="476.0" layoutY="1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                 <children>
+                                    <Button fx:id="button_login" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#loginHandler" text="Login" />
+                                    <Button fx:id="button_signup" alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="1920.0" mnemonicParsing="false" onAction="#signUp" text="Sign Up" />
+                                 </children>
+                              </HBox>
+                              <Button layoutX="1166.0" layoutY="39.0" mnemonicParsing="false" onAction="#loadHelpCenter" text="HelpCenter" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <TextField maxWidth="500.0" prefWidth="500.0" fx:id="textfield_search" onAction="#search">
+                                       <HBox.margin>
+                                          <Insets right="3.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" text="Search" onAction="#search" onInputMethodTextChanged="#search">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" text="Suchoptionen" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets bottom="5.0" />
+                     </BorderPane.margin>
+                  </VBox>
+               </top>
+               <center>
+                  <ScrollPane id="scrollpage_hotel" fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
+                     <content>
+                        <ListView fx:id="listView" onMouseClicked="#onListViewClick" prefHeight="200.0" prefWidth="200.0" >
+                           <HBox fx:id="listBox" alignment="CENTER_LEFT">
+                              <padding><Insets top="5" bottom="5" left="5"></Insets> </padding>
+                              <HBox alignment="CENTER_LEFT" prefWidth="170" minWidth="88">
+                                 <Label fx:id="image" text="" styleClass="Name"></Label>
+                              </HBox>
+                              <VBox styleClass="Description" prefWidth="155" minWidth="86">
+
+                                 <HBox>
+                                    <HBox styleClass="surveyDesIcon" prefWidth="20" prefHeight="16"></HBox>
+                                    <Label fx:id="hotelname" text=""></Label>
+                                 </HBox>
+                                 <HBox>
+                                    <HBox styleClass="DateIcon" prefWidth="20" prefHeight="16"></HBox>
+                                    <Label fx:id="adress" text=""></Label>
+                                 </HBox>
+                              </VBox>
+                              <HBox fx:id="Status" prefWidth="160" minWidth="80">
+                                 <Label fx:id="description" text=""/>
+                              </HBox>
+                              <HBox fx:id="Interests" prefWidth="160" minWidth="80">
+                                 <Label fx:id="interests" text=""/>
+                              </HBox>
+
+                           </HBox>
+                        </ListView>
+                     </content>
+                  </ScrollPane>
+               </center>
+               <left>
+                  <Pane BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox prefHeight="250.0" prefWidth="175.0">
+                           <children>
+                              <Label alignment="CENTER" prefWidth="100.0" text="Vorschläge" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ListView prefHeight="120.0" prefWidth="100.0" />
+                              <Label alignment="CENTER" prefWidth="100.0" text="Interessen" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ScrollPane hbarPolicy="NEVER">
+                                <content>
+                                  <AnchorPane minHeight="-Infinity" minWidth="-Infinity">
+                                       <children>
+                              <VBox>
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" text="Tennis">
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" text="Schwimmen">
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" text="Schifahren">
+                                                   <VBox.margin>
+                                                      <Insets bottom="2.0" />
+                                                   </VBox.margin>
+                                                </CheckBox>
+                                    <CheckBox mnemonicParsing="false" text="Essen">
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" text="Wandern">
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" text="Am Meer">
+                                                   <VBox.margin>
+                                                      <Insets bottom="2.0" />
+                                                   </VBox.margin>
+                                                </CheckBox>
+                                    <CheckBox mnemonicParsing="false" text="Sauna">
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" text="SPA">
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" text="Solarium">
+                                                   <VBox.margin>
+                                                      <Insets bottom="2.0" />
+                                                   </VBox.margin>
+                                                </CheckBox>
+                                 </children>
+                              </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </ScrollPane>
+
+
+                           </children>
+                        </VBox>
+
+                     </children>
+                     <BorderPane.margin>
+                        <Insets right="5.0" />
+                     </BorderPane.margin>
+                  </Pane>
+               </left>
+            </BorderPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
