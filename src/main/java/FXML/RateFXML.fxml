@@ -13,7 +13,7 @@
          <children>
             <VBox alignment="TOP_CENTER">
                <children>
-                  <Label text="Bewertung">
+                  <Label text="Rating">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -21,7 +21,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="&quot;Sterne&quot;">
+                  <Label text="&quot;Stars&quot;">
                      <font>
                         <Font name="System Italic" size="12.0" />
                      </font>
@@ -41,7 +41,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Button>
-                              <Button mnemonicParsing="false" text="Bewerten" onAction="#rate" />
+                              <Button mnemonicParsing="false" onAction="#rate" prefWidth="60.0" text="Rate" />
                            </children>
                         </HBox>
                      </children>

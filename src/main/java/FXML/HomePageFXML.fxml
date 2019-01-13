@@ -64,7 +64,7 @@
                                           <Insets right="5.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button mnemonicParsing="false" text="Suchoptionen" />
+                                    <Button mnemonicParsing="false" text="Options" />
                                  </children>
                               </HBox>
                            </children>
@@ -112,13 +112,13 @@
                      <children>
                         <VBox prefHeight="250.0" prefWidth="175.0">
                            <children>
-                              <Label alignment="CENTER" prefWidth="100.0" text="Vorschläge" textAlignment="CENTER">
+                              <Label alignment="CENTER" prefWidth="100.0" text="Recommendation" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
                               <ListView prefHeight="120.0" prefWidth="100.0" />
-                              <Label alignment="CENTER" prefWidth="100.0" text="Interessen" textAlignment="CENTER">
+                              <Label alignment="CENTER" prefWidth="100.0" text="Interests" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -129,47 +129,47 @@
                                        <children>
                                           <VBox>
                                              <children>
-                                                <CheckBox mnemonicParsing="false" text="Tennis">
+                                                <CheckBox mnemonicParsing="false" fx:id="list_1" text="Tennis" onAction="#clicked">
                                                    <VBox.margin>
                                                       <Insets bottom="2.0" />
                                                    </VBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false" text="Schwimmen">
+                                                <CheckBox mnemonicParsing="false" fx:id="list_2" text="Swim" onAction="#clicked">
                                                    <VBox.margin>
                                                       <Insets bottom="2.0" />
                                                    </VBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false" text="Schifahren">
+                                                <CheckBox mnemonicParsing="false" fx:id="list_3" text="Ski" onAction="#clicked">
                                                    <VBox.margin>
                                                       <Insets bottom="2.0" />
                                                    </VBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false" text="Essen">
+                                                <CheckBox mnemonicParsing="false" fx:id="list_4" text="Eat" onAction="#clicked">
                                                    <VBox.margin>
                                                       <Insets bottom="2.0" />
                                                    </VBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false" text="Wandern">
+                                                <CheckBox mnemonicParsing="false" fx:id="list_5" text="Hiking" onAction="#clicked">
                                                    <VBox.margin>
                                                       <Insets bottom="2.0" />
                                                    </VBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false" text="Am Meer">
+                                                <CheckBox mnemonicParsing="false" fx:id="list_6" text="Sea" onAction="#clicked">
                                                    <VBox.margin>
                                                       <Insets bottom="2.0" />
                                                    </VBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false" text="Sauna">
+                                                <CheckBox mnemonicParsing="false" fx:id="list_7" text="Sauna" onAction="#clicked">
                                                    <VBox.margin>
                                                       <Insets bottom="2.0" />
                                                    </VBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false" text="SPA">
+                                                <CheckBox mnemonicParsing="false" fx:id="list_8" text="SPA" onAction="#clicked">
                                                    <VBox.margin>
                                                       <Insets bottom="2.0" />
                                                    </VBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false" text="Solarium">
+                                                <CheckBox mnemonicParsing="false" fx:id="list_9" text="Solarium" onAction="#clicked">
                                                    <VBox.margin>
                                                       <Insets bottom="2.0" />
                                                    </VBox.margin>

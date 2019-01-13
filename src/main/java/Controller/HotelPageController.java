@@ -34,13 +34,16 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -52,6 +55,9 @@ public class HotelPageController implements Initializable
     private static ObjectId hotelID;
     private static ObjectId ownerID;
     private static ObjectId writerID;
+    private int total_views;
+    private int total_ratings;
+    private int total_booking;
 
     public static final ObservableList interestsList =
             FXCollections.observableArrayList();
@@ -60,7 +66,6 @@ public class HotelPageController implements Initializable
     public static final ObservableList ratingList =
             FXCollections.observableArrayList();
 
-    private String Email;
     @FXML
     private Label label_hotelname;
     @FXML
@@ -76,13 +81,17 @@ public class HotelPageController implements Initializable
     @FXML
     private ListView listView_rating;
     @FXML
-    private LineChart lineChart;
-
-    @FXML
     private Button button_edit;
-
     @FXML
     private VBox vbox_stats;
+    @FXML
+    private Label label_rating;
+    @FXML
+    private Label label_total_rating;
+    @FXML
+    private Label label_total_visits;
+    @FXML
+    private Label label_total_bookings;
 
     public HotelPageController()
     {
@@ -118,9 +127,11 @@ public class HotelPageController implements Initializable
 
             Document hotel = collection.find(eq("_id", hotelID)).first();
 
+            updateStats(collection, hotel);
+
             ownerID = (ObjectId) hotel.get("OwnerID");
 
-            System.out.print(Main.loggedInPerson.getId() + " " + ownerID + "\n");
+            System.out.print(Main.loggedInPerson.getId());
 
             if(Main.loggedInPerson.getId() != null && ownerID != null)
             {
@@ -131,6 +142,7 @@ public class HotelPageController implements Initializable
                         button_edit.setVisible(true);
                         vbox_stats.setVisible(true);
                         fillStats();
+                        fillHotelStats();
                     }
 
                 }
@@ -196,6 +208,47 @@ public class HotelPageController implements Initializable
         fillRatings();
     }
 
+    private void fillHotelStats()
+    {
+        MongoClient mongo = MongoClients.create();
+        try
+        {
+            MongoDatabase db = mongo.getDatabase("OAD");
+            MongoCollection<Document> collection = db.getCollection("Hotel");
+            Document hotel = collection.find(eq("_id", hotelID)).first();
+            List<String> stats = (List<String>) hotel.get("Stats");
+            label_total_visits.setText(stats.get(0));
+            label_total_bookings.setText(stats.get(1));
+        }
+        catch (Exception e){System.out.print(e + "\n");}
+        finally
+        {
+            mongo.close();
+        }
+    }
+
+    private void updateStats(MongoCollection<Document> collection, Document hotel)
+    {
+        List<String> stats = (List<String>) hotel.get("Stats");
+        if(stats != null)
+        {
+            total_views = Integer.parseInt(stats.get(0));
+            total_views++;
+            stats.set(0, String.valueOf(total_views));
+        }
+        else
+        {
+            stats = new ArrayList<>();
+            stats.add("0");
+            stats.add("0");
+        }
+
+        Bson filter = new Document("_id", hotel.get("_id"));
+        Bson newValue = new Document("Stats", stats);
+        Bson updateOperationDocument = new Document("$set", newValue);
+        collection.updateOne(filter, updateOperationDocument);
+    }
+
 
     private String getFile(ObjectId imageID)
     {
@@ -209,7 +262,6 @@ public class HotelPageController implements Initializable
             FileOutputStream streamToDownloadTo = new FileOutputStream(new File("./src/main/resources/image/" + imageID.toString()+".jpg"));
             gridFSBucket.downloadToStream(imageID, streamToDownloadTo);
             streamToDownloadTo.close();
-            System.out.println(streamToDownloadTo.toString());
         } catch (IOException e)
         {
             // handle exception
@@ -218,8 +270,6 @@ public class HotelPageController implements Initializable
         return "/image/" + imageID.toString()+".jpg";
 
     }
-
-    @FXML private Label label_rating;
 
     private void fillStats()
     {
@@ -235,16 +285,13 @@ public class HotelPageController implements Initializable
             int counter = 0;
             for (Document document : documents)
             {
-                System.out.print(star +"\n");
                 star += Double.parseDouble(document.get("Stars").toString());
                 counter++;
             }
 
             star /= counter;
-
-            System.out.print(star +"\n");
+            label_total_rating.setText(String.valueOf(counter));
             label_rating.setText(String.valueOf(star));
-
         }
         catch(Exception e){System.out.print(e + " \n");}
         finally
@@ -277,7 +324,6 @@ public class HotelPageController implements Initializable
                 if(Main.loggedIn && (Main.loggedInPerson.getId().equals(document.get("WriterID"))
                         || Main.loggedInPerson.getRole().equals("Admin")))
                 {
-                    System.out.print("My rating\n");
                     final Button delete = new Button();
                     HBox alignmentBox = new HBox();
                     alignmentBox.getChildren().add(delete);
@@ -293,9 +339,7 @@ public class HotelPageController implements Initializable
                     {
                         public void handle(ActionEvent e)
                         {
-                            System.out.print("Delete Clicked\n");
                             writerID = (ObjectId) document.get("WriterID");
-                            System.out.print(writerID +"\n");
                             deleteRating();
                         }
                     });
@@ -322,6 +366,8 @@ public class HotelPageController implements Initializable
                 listView_rating.setItems(ratingList);
             }
 
+            if(size > 220)
+                size = 220;
             listView_rating.setMinHeight(size);
 
         } catch (Exception e)
@@ -463,19 +509,14 @@ public class HotelPageController implements Initializable
     {
         Stage map_stage = new Stage();
         WebView browser = new WebView();
-
         WebEngine webEngine = browser.getEngine();
-        System.out.print("\n" + label_address.getText());
-
         webEngine.load("https://www.google.com/maps/place/" + label_address.getText());
 
         StackPane root = new StackPane();
         root.getChildren().add(browser);
-
         map_stage.setScene(new Scene(root));
         map_stage.setMaximized(true);
         map_stage.show();
-
     }
 }
 

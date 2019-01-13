@@ -1,10 +1,10 @@
 package Controller;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
@@ -13,7 +13,6 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.client.*;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
-import com.sun.org.apache.xerces.internal.xs.StringList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -78,10 +77,6 @@ public class HomePageController implements Initializable
 
         ObjectId imageID = (ObjectId) document.get("ImageID");
         String url = getFile(imageID);
-
-        System.out.print(url+ "\n");
-        System.out.print(imageID+ "\n");
-
 
         ImageView imageView;
         try
@@ -188,11 +183,10 @@ public class HomePageController implements Initializable
         {
             FileOutputStream streamToDownloadTo = new FileOutputStream(new File("./src/main/resources/image/" + imageID.toString()+".jpg"));
             gridFSBucket.downloadToStream(imageID, streamToDownloadTo);
-            streamToDownloadTo.close();
-            System.out.println(streamToDownloadTo.toString());
+            streamToDownloadTo.close();;
         } catch (IOException e)
         {
-            // handle exception
+            System.out.print(e + "\n");
         }
 
         return "/image/" + imageID.toString()+".jpg";
@@ -271,7 +265,7 @@ public class HomePageController implements Initializable
             if (Main.loggedIn)
             {
                 button_login.setText("Logout");
-                makeRecommendation();
+                makeRecommendation(Main.loggedInPerson.getInterests());
             }
 
         }
@@ -306,7 +300,7 @@ public class HomePageController implements Initializable
                 Parent root = FXMLLoader.load(url);
                 open_stage.setScene(new Scene(root));
                 open_stage.setTitle("EditProfil " + Main.loggedInPerson.getName());
-                open_stage.show();
+                open_stage.showAndWait();
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -398,19 +392,17 @@ public class HomePageController implements Initializable
     }
 
 
-    private void makeRecommendation()
+    private void makeRecommendation(List<String> interests)
     {
         MongoClient mongoClient = MongoClients.create();
         MongoDatabase db = mongoClient.getDatabase("OAD");
         MongoCollection<Document> collection = db.getCollection("Hotel");
 
-        List<String> my_interests = Main.loggedInPerson.getInterests();
-
         List<Integer> important = new ArrayList<Integer>();
 
-        for(int i = 0; i < my_interests.size(); i++)
+        for(int i = 0; i < interests.size(); i++)
         {
-            if(my_interests.get(i) != null)
+            if(interests.get(i) != null)
             {
                 important.add(i);
             }
@@ -426,13 +418,14 @@ public class HomePageController implements Initializable
 
             for(int i = 0; i < important.size(); i++)
             {
-                if(my_interests.get(important.get(i)).equals(hotel_interests.get(important.get(i))))
+                if(interests.get(important.get(i)).equals(hotel_interests.get(important.get(i))))
                 {
                     valid_hotel = true;
                 }
                 else
                 {
                     valid_hotel = false;
+                    break;
                 }
             }
 
@@ -441,6 +434,52 @@ public class HomePageController implements Initializable
                 recommendation.add(document);
             }
         }
-        printHotels(recommendation);
+        if (important.size() == 0)
+            printHotels(more);
+        else
+            printHotels(recommendation);
+    }
+
+    @FXML
+    private void clicked()
+    {
+        System.out.print("Clicked");
+        makeRecommendation(getAllCheckBoxes());
+    }
+
+    @FXML private CheckBox list_1;
+    @FXML private CheckBox list_2;
+    @FXML private CheckBox list_3;
+    @FXML private CheckBox list_4;
+    @FXML private CheckBox list_5;
+    @FXML private CheckBox list_6;
+    @FXML private CheckBox list_7;
+    @FXML private CheckBox list_8;
+    @FXML private CheckBox list_9;
+
+    private List<String> getAllCheckBoxes()
+    {
+        String[] my_interests = new String[9];
+
+        if (list_1.isSelected())
+            my_interests[0] = "Tennis";
+        if (list_2.isSelected())
+            my_interests[1] = "Swim";
+        if (list_3.isSelected())
+            my_interests[2] = "Ski";
+        if (list_4.isSelected())
+            my_interests[3] = "Eat";
+        if (list_5.isSelected())
+            my_interests[4] = "Hiking";
+        if (list_6.isSelected())
+            my_interests[5] = "Sea";
+        if (list_7.isSelected())
+            my_interests[6] = "Sauna";
+        if (list_8.isSelected())
+            my_interests[7] = "SPA";
+        if (list_9.isSelected())
+            my_interests[8] = "Solarium";
+
+        return Arrays.asList(my_interests);
     }
 }

@@ -2,13 +2,18 @@ package Controller;
 
 import com.mongodb.client.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
@@ -63,7 +68,6 @@ public class CreateProfilController implements Initializable
 
             for(int i = 0; i < test.size();i++)
             {
-                System.out.print(test.get(i));
                 if(test.get(i) != null)
                     setCheckbox(test.get(i));
 
@@ -153,11 +157,10 @@ public class CreateProfilController implements Initializable
             Bson updateOperationDocument = new Document("$set", newValue);
             collection.updateOne(filter, updateOperationDocument);
             Main.loggedInPerson.setEmail(Email);
-
         }
         catch (Exception e)
         {
-            System.out.print(e);
+            System.out.print(e + "\n");
         }
     }
 
@@ -173,7 +176,7 @@ public class CreateProfilController implements Initializable
         }
         catch (Exception e)
         {
-            System.out.print(e);
+            System.out.print(e + "\n");
         }
     }
 
@@ -209,6 +212,8 @@ public class CreateProfilController implements Initializable
                 System.out.print("Deleted Account");
                 Main.loggedIn = false;
                 Main.loggedInPerson.clear();
+
+                refreshHomePage();
                 Stage stage = (Stage) id_email.getScene().getWindow();
                 stage.close();
             }
@@ -218,5 +223,17 @@ public class CreateProfilController implements Initializable
                 mongoClient.close();
             }
         }
+    }
+
+    private void refreshHomePage() throws Exception
+    {
+        URL url = new File("src/main/java/FXML/HomePageFXML.fxml").toURL();
+        System.out.print(url +"\n");
+        Parent root = FXMLLoader.load(url);
+        Scene scene = new Scene(root);
+        Main.active_stage.setTitle("Welcome to T-REC");
+        Main.active_stage.setScene(scene);
+        Main.active_stage.setMaximized(true);
+        Main.active_stage.show();
     }
 }

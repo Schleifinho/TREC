@@ -26,9 +26,7 @@ public class Main extends Application{
         URL url = new File("src/main/java/FXML/HomePageFXML.fxml").toURL();
         System.out.print(url +"\n");
         Parent root = FXMLLoader.load(url);
-
         Scene scene = new Scene(root);
-
         active_stage.setTitle("Welcome to T-REC");
         active_stage.setScene(scene);
         active_stage.setMaximized(true);

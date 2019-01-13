@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.time.ZoneId;
@@ -27,18 +28,8 @@ public class ContactController
     @FXML private TextArea text;
     public void sendEmail()
     {
-        // Recipient's email ID needs to be mentioned.
-        String to = "abcd@gmail.com";
-
-
-        String from = "web@gmail.com";
-
-        // Sender's email ID needs to be mentioned
-
         if (Main.loggedIn)
         {
-
-
             MyEmail = Main.loggedInPerson.getEmail();
             ObjectId id = HotelPageController.getOwnerID();
             HotelOwnerEmail = getOwnerEmail(id);
@@ -65,6 +56,8 @@ public class ContactController
                 System.out.print("Subject: reservation from " + Main.loggedInPerson.getName() + "!" + "\n");
                 System.out.print(message_text + "\n");
                 System.out.print("Email sent...\n");
+
+                updateContactStats(HotelPageController.getHotelID());
             }
             else
             {
@@ -107,6 +100,33 @@ public class ContactController
             mex.printStackTrace();
         }
 */
+    }
+
+    private void updateContactStats(Object hotelID)
+    {
+        MongoClient mongo = MongoClients.create();
+        try
+        {
+            MongoDatabase db = mongo.getDatabase("OAD");
+            MongoCollection<Document> collection = db.getCollection("Hotel");
+            Document hotel = collection.find(eq("_id", hotelID)).first();
+
+            List<String> stats = (List<String>) hotel.get("Stats");
+
+            int total_contacts = Integer.parseInt(stats.get(1));
+            total_contacts++;
+            stats.set(1, String.valueOf(total_contacts));
+
+            Bson filter = new Document("_id", hotel.get("_id"));
+            Bson newValue = new Document("Stats", stats);
+            Bson updateOperationDocument = new Document("$set", newValue);
+            collection.updateOne(filter, updateOperationDocument);
+        }
+        catch (Exception e){System.out.print(e + "\n");}
+        finally
+        {
+            mongo.close();
+        }
     }
 
     public static void sendEmail(Session session, String toEmail, String subject, String body){

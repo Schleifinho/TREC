@@ -12,9 +12,13 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.bson.Document;
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -72,7 +76,6 @@ public class RateController
                 System.out.print("Login first\n");
         }
     }
-
     private void openStage()
     {
         try

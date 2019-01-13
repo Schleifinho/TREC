@@ -7,6 +7,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.io.IOException;
 import java.time.ZoneId;
@@ -25,6 +26,8 @@ public class RegisterController
     private String Role = "User";
     private Date Date_of_Birth;
     private String[] Interests = new String[9];
+
+    private ObjectId _id;
 
     public void register() throws IOException
     {
@@ -49,24 +52,30 @@ public class RegisterController
                 user.put("Date", Date_of_Birth);
                 user.put("Email", Email);
                 user.put("Password", Password);
-                user.put("Role", "User");
+                user.put("Role", Role);
                 user.put("Interests", Arrays.asList(Interests));
 
                 collection.insertOne(user);
 
+                _id = user.getObjectId("_id");
 
-            } catch (Exception e) {}
+
+            } catch (Exception e) {System.out.print(e +"\n");}
             finally
             {
                 mongoClient.close();
             }
 
             Main.loggedIn = true;
+            Main.loggedInPerson.clear();
             Main.loggedInPerson.setName(Name);
             Main.loggedInPerson.setSurname(Surname);
             Main.loggedInPerson.setEmail(Email);
             Main.loggedInPerson.setPassword(Password);
             Main.loggedInPerson.setDate(Date_of_Birth);
+            Main.loggedInPerson.setRole(Role);
+            Main.loggedInPerson.setInterests(Arrays.asList(Interests));
+            Main.loggedInPerson.setId(_id);
 
             Stage stage = (Stage) id_name.getScene().getWindow();
             stage.close();

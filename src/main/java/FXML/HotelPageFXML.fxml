@@ -40,12 +40,12 @@
                            </font>
                         </Label>
                         <Label fx:id="label_address" minWidth="300.0" text="Addresse" />
-                        <VBox alignment="TOP_RIGHT" fillWidth="false">
+                        <VBox alignment="TOP_RIGHT">
                            <children>
-                              <Button fx:id="button_contact" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#contactOwner" text="Kontaktieren" />
+                              <Button fx:id="button_contact" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#contactOwner" text="Contact" />
                            </children>
                            <VBox.margin>
-                              <Insets right="5.0" />
+                              <Insets />
                            </VBox.margin>
                         </VBox>
                         <VBox alignment="CENTER">
@@ -56,26 +56,34 @@
                                  </font>
                               </Label>
                               <ListView fx:id="listView_interests" maxWidth="300.0" prefHeight="100.0" />
-                              <Label text="Einrichtung">
+                              <Label text="Facilities">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <ListView fx:id="listView_facilities" maxWidth="300.0" prefHeight="100.0">
+                              <ListView fx:id="listView_facilities" maxHeight="300.0" maxWidth="300.0" prefHeight="100.0">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </ListView>
-                              <Label text="Bewertungen">
+                              <Label text="Ratings">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <ListView fx:id="listView_rating" maxWidth="300.0" prefHeight="100.0">
+                              <ListView fx:id="listView_rating" maxHeight="300.0" maxWidth="300.0">
                                  <VBox.margin>
                                     <Insets bottom="2.0" />
                                  </VBox.margin>
                               </ListView>
+                              <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="button_rate" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#rate" text="Rate" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
                               <Label text="Map">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
@@ -87,9 +95,9 @@
                                     <Insets bottom="5.0" top="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <Button mnemonicParsing="false" text="Show Map" onAction="#printMap"/>
+                              <Button mnemonicParsing="false" onAction="#printMap" text="Show Map" />
 
-                              <VBox fx:id="vbox_stats" alignment="CENTER" fillWidth="false" maxHeight="0.0" maxWidth="0.0" visible="false">
+                              <VBox fx:id="vbox_stats" alignment="CENTER" fillWidth="false" maxHeight="0.0" maxWidth="0.0" spacing="5.0">
                                  <children>
                                     <Label maxHeight="2.0" minHeight="2.0" minWidth="500.0" style="-fx-background-color: black;">
                                        <VBox.margin>
@@ -105,35 +113,73 @@
                                           <Insets top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Average Rating">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="label_rating" text="3.0" />
-                                    <LineChart fx:id="lineChart" prefHeight="20.0">
-                                      <xAxis>
-                                        <CategoryAxis side="BOTTOM" />
-                                      </xAxis>
-                                      <yAxis>
-                                        <NumberAxis side="LEFT" />
-                                      </yAxis>
-                                    </LineChart>
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Average Rating">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="label_rating" text="3.0" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Total Ratings">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="label_total_rating" text="3.0" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Total Visits">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="label_total_visits" text="0" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Total Bookings">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="label_total_bookings" text="0" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
                                  </children>
-                              </VBox>
-                              <VBox alignment="TOP_RIGHT" prefWidth="100.0">
-                                 <children>
-                                    <Button fx:id="button_rate" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#rate" text="Bewertung abgeben" />
-                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
                               </VBox>
                            </children>
                            <VBox.margin>
-                              <Insets top="15.0" />
+                              <Insets />
                            </VBox.margin>
                         </VBox>
                      </children>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
                   </VBox>
                </children>
+               <padding>
+                  <Insets right="15.0" />
+               </padding>
             </StackPane>
          </content>
       </ScrollPane>

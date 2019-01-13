@@ -14,7 +14,7 @@
                <children>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="105.0" text="Vorname:">
+                        <Label prefHeight="25.0" prefWidth="105.0" text="Forename:">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -31,7 +31,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="105.0" text="Nachname:">
+                        <Label prefHeight="25.0" prefWidth="105.0" text="Surname:">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -62,7 +62,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="105.0" text="Geburtsdatum:">
+                        <Label prefHeight="25.0" prefWidth="105.0" text="Date of Birth:">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -75,16 +75,12 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="105.0" text="Passwort:">
+                        <Label prefHeight="25.0" prefWidth="105.0" text="Password:">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="id_password" prefHeight="25.0">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </TextField>
+                        <PasswordField fx:id="id_password" />
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -92,61 +88,57 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="105.0" text="Wiederholen:">
+                        <Label prefHeight="25.0" prefWidth="105.0" text="Confirm:">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="id_password_confirm" prefHeight="25.0">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </TextField>
+                        <PasswordField fx:id="id_password_confirm" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="105.0" text="Interessen:">
+                        <Label prefHeight="25.0" prefWidth="105.0" text="Interests:">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></Label>
-                        <VBox>
+                        <VBox prefWidth="75.0">
                            <children>
                               <CheckBox fx:id="id_tennis" mnemonicParsing="false" text="Tennis">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_swim" mnemonicParsing="false" text="Schwimmen">
+                              <CheckBox fx:id="id_swim" mnemonicParsing="false" text="Swim">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_ski" mnemonicParsing="false" text="Schifahren" />
+                              <CheckBox fx:id="id_ski" mnemonicParsing="false" text="Ski" />
                            </children>
                            <HBox.margin>
                               <Insets right="5.0" top="5.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox>
+                        <VBox prefWidth="75.0">
                            <children>
-                              <CheckBox fx:id="id_eat" mnemonicParsing="false" text="Essen">
+                              <CheckBox fx:id="id_eat" mnemonicParsing="false" text="Eat">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_hiking" mnemonicParsing="false" text="Wandern">
+                              <CheckBox fx:id="id_hiking" mnemonicParsing="false" text="Hiking">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_sea" mnemonicParsing="false" text="Am Meer" />
+                              <CheckBox fx:id="id_sea" mnemonicParsing="false" text="Sea" />
                            </children>
                            <HBox.margin>
                               <Insets right="5.0" top="5.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox>
+                        <VBox prefWidth="75.0">
                            <children>
                               <CheckBox fx:id="id_sauna" mnemonicParsing="false" text="Sauna">
                                  <VBox.margin>

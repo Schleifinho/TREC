@@ -22,7 +22,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Allgemeine Informationen">
+                  <Label text="General Informationen">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -44,13 +44,13 @@
                   </HBox>
                   <HBox prefWidth="600.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="80.0" text="Adresse:" />
+                        <Label prefHeight="25.0" prefWidth="80.0" text="Adress:" />
                         <TextField fx:id="id_address">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
                         </TextField>
-                        <Label prefHeight="25.0" prefWidth="60.0" text="Hausnr.:" />
+                        <Label prefHeight="25.0" prefWidth="60.0" text="Number:" />
                         <TextField fx:id="id_number" prefWidth="40.0" />
                      </children>
                      <VBox.margin>
@@ -62,7 +62,7 @@
                   </HBox>
                   <HBox prefWidth="600.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="80.0" text="Ort:" />
+                        <Label prefHeight="25.0" prefWidth="80.0" text="Location:" />
                         <TextField fx:id="id_location" />
                      </children>
                      <padding>
@@ -79,8 +79,8 @@
                   </Label>
                   <HBox prefWidth="600.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="130.0" text="Preis:" />
-                        <Label prefHeight="25.0" text="von ">
+                        <Label prefHeight="25.0" prefWidth="130.0" text="Price:" />
+                        <Label prefHeight="25.0" text="from">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
@@ -90,7 +90,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </TextField>
-                        <Label prefHeight="25.0" text="bis">
+                        <Label prefHeight="25.0" text="to">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
@@ -106,7 +106,7 @@
                   </HBox>
                   <HBox prefWidth="600.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="130.0" text="Beschreibung:" />
+                        <Label prefHeight="25.0" prefWidth="130.0" text="Description:" />
                         <TextArea fx:id="id_description" prefHeight="80.0" prefWidth="350.0" wrapText="true" />
                      </children>
                      <padding>
@@ -118,44 +118,44 @@
                   </HBox>
                   <HBox prefWidth="600.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="130.0" text="Freizeitaktivitäten:" />
-                        <VBox>
+                        <Label prefHeight="25.0" prefWidth="130.0" text="Activities:" />
+                        <VBox prefWidth="75.0">
                            <children>
                               <CheckBox fx:id="id_tennis" mnemonicParsing="false" text="Tennis">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_swim" mnemonicParsing="false" text="Schwimmen">
+                              <CheckBox fx:id="id_swim" mnemonicParsing="false" text="Swim">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_ski" mnemonicParsing="false" text="Schifahren" />
+                              <CheckBox fx:id="id_ski" mnemonicParsing="false" text="Ski" />
                            </children>
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox>
+                        <VBox prefWidth="75.0">
                            <children>
-                              <CheckBox fx:id="id_eat" mnemonicParsing="false" text="Essen">
+                              <CheckBox fx:id="id_eat" mnemonicParsing="false" text="Eat">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_hiking" mnemonicParsing="false" text="Wandern">
+                              <CheckBox fx:id="id_hiking" mnemonicParsing="false" text="Hiking">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_sea" mnemonicParsing="false" text="Am Meer" />
+                              <CheckBox fx:id="id_sea" mnemonicParsing="false" text="Sea" />
                            </children>
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox>
+                        <VBox prefWidth="75.0">
                            <children>
                               <CheckBox fx:id="id_sauna" mnemonicParsing="false" text="Sauna">
                                  <VBox.margin>
@@ -175,7 +175,7 @@
                         <Insets left="15.0" />
                      </padding>
                   </HBox>
-                  <Label text="Einrichtung">
+                  <Label text="Facilities">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -188,27 +188,27 @@
                   </Label>
                   <HBox prefWidth="600.0">
                      <children>
-                        <VBox>
+                        <VBox prefWidth="90.0">
                            <children>
                               <CheckBox fx:id="id_wlan" mnemonicParsing="false" text="Wlan">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_tv" mnemonicParsing="false" text="Fernseher">
+                              <CheckBox fx:id="id_tv" mnemonicParsing="false" text="TV">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_pets" mnemonicParsing="false" text="Tierfreundlich" />
+                              <CheckBox fx:id="id_pets" mnemonicParsing="false" text="Pets" />
                            </children>
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox>
+                        <VBox prefWidth="90.0">
                            <children>
-                              <CheckBox fx:id="id_park" mnemonicParsing="false" text="Parken">
+                              <CheckBox fx:id="id_park" mnemonicParsing="false" text="Park">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -224,14 +224,14 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox>
+                        <VBox prefWidth="90.0">
                            <children>
-                              <CheckBox fx:id="id_ac" mnemonicParsing="false" text="Klimaanlage">
+                              <CheckBox fx:id="id_ac" mnemonicParsing="false" text="AC">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_warm" mnemonicParsing="false" text="Heizung">
+                              <CheckBox fx:id="id_warm" mnemonicParsing="false" text="Heat">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -242,19 +242,19 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox>
+                        <VBox prefWidth="90.0">
                            <children>
                               <CheckBox fx:id="id_pool" mnemonicParsing="false" text="Pool">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_24h" mnemonicParsing="false" text="24h Empfang">
+                              <CheckBox fx:id="id_24h" mnemonicParsing="false" text="24h Service">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="id_nosmoke" mnemonicParsing="false" text="Rauchfrei" />
+                              <CheckBox fx:id="id_nosmoke" mnemonicParsing="false" text="No Smoking" />
                            </children>
                         </VBox>
                      </children>
@@ -267,8 +267,8 @@
                   </HBox>
                   <AnchorPane>
                      <children>
-                        <Button mnemonicParsing="false" text="Delete Page" AnchorPane.leftAnchor="0.0" onAction="#deletePage"/>
-                        <Button fx:id="button_save" mnemonicParsing="false" onAction="#saveData" text="Speichern" AnchorPane.rightAnchor="0.0" />
+                        <Button mnemonicParsing="false" onAction="#deletePage" text="Delete Page" AnchorPane.leftAnchor="0.0" />
+                        <Button fx:id="button_save" mnemonicParsing="false" onAction="#saveData" text="Save" AnchorPane.rightAnchor="0.0" />
                      </children>
                      <VBox.margin>
                         <Insets top="20.0" />
