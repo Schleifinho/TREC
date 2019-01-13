@@ -26,7 +26,7 @@
                         <Insets bottom="3.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextArea fx:id="complains" promptText="Complains">
+                  <TextArea fx:id="complains" promptText="Complains" wrapText="true">
                      <VBox.margin>
                         <Insets bottom="2.0" />
                      </VBox.margin>

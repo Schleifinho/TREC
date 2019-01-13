@@ -118,8 +118,12 @@ public class HelpCenterController implements Initializable
         Label subject = new Label(document.get("Subject").toString());
         subject.setStyle("-fx-font-weight: bold;"+"-fx-font-size: 14");
 
+        Label seperate = new Label();
+        seperate.setMinWidth(50);
+        seperate.setStyle("-fx-background-color: black;" + " -fx-font-size: 0.25");
         Label complain = new Label(document.get("Complain").toString());
-        complain.setMaxWidth(250);
+        complain.setMaxWidth(450);
+        complain.setStyle("-fx-font-style: italic");
         complain.setWrapText(true);
 
         Label answer = new Label();
@@ -160,6 +164,7 @@ public class HelpCenterController implements Initializable
         //Build HBox
         vBox.getChildren().add(subject);
         vBox.getChildren().add(complain);
+        vBox.getChildren().add(seperate);
         vBox.getChildren().add(answer);
         hBox.setSpacing(20);
         hBox.setAlignment(Pos.TOP_LEFT);
