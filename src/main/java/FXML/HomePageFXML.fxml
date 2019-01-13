@@ -37,12 +37,17 @@
                               </Label>
                               <HBox alignment="TOP_RIGHT" layoutX="476.0" layoutY="1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                  <children>
-                                    <Button fx:id="button_login" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#loginHandler" text="Login" />
+                                    <Button fx:id="button_login" alignment="TOP_RIGHT" contentDisplay="RIGHT"  mnemonicParsing="false" onAction="#loginHandler" text="Login" >
+                                       <HBox.margin>
+                                          <Insets>
+                                             <right>3</right>
+                                          </Insets>
+                                       </HBox.margin>
+                                    </Button>
                                     <Button fx:id="button_signup" alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="1920.0" mnemonicParsing="false" onAction="#signUp" text="Sign Up" />
                                  </children>
                               </HBox>
-                              <Button layoutX="1166.0" layoutY="39.0" mnemonicParsing="false" onAction="#loadHelpCenter" text="Need Help" />
-                              <Button layoutX="1166.0" layoutY="39.0" mnemonicParsing="false"  text="HelpCenter" />
+                              <Button layoutX="1166.0" layoutY="39.0" mnemonicParsing="false" onAction="#loadHelpCenter" text="HelpCenter" AnchorPane.rightAnchor="5"/>
                            </children>
                         </AnchorPane>
                         <AnchorPane>

@@ -272,12 +272,12 @@
                               <Insets right="8.0" />
                            </HBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" text="Select Image" onAction="#selectFile">
+                        <Button mnemonicParsing="false" onAction="#selectFile" text="Select Image">
                            <HBox.margin>
                               <Insets right="8.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="button_save" mnemonicParsing="false" onAction="#createHotelPage" text="Speichern"/>
+                        <Button fx:id="button_save" mnemonicParsing="false" onAction="#createHotelPage" text="Speichern" />
                      </children>
                      <VBox.margin>
                         <Insets top="15.0" />

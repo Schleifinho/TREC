@@ -121,7 +121,7 @@
                               </VBox>
                               <VBox alignment="TOP_RIGHT" prefWidth="100.0">
                                  <children>
-                                    <Button fx:id="button_rate" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#bewerten" text="Bewertung abgeben" />
+                                    <Button fx:id="button_rate" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#rate" text="Bewertung abgeben" />
                                  </children>
                               </VBox>
                            </children>

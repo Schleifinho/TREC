@@ -412,21 +412,29 @@ public class HotelPageController implements Initializable
     }
 
     @FXML
-    private void bewerten() throws Exception
+    private void rate() throws Exception
     {
 
-        try
+        if(Main.loggedIn)
         {
-            URL url = new File("src/main/java/FXML/BewertungenFXML.fxml").toURL();
-            Parent root = FXMLLoader.load(url);
+            try
+            {
+                URL url = new File("src/main/java/FXML/RateFXML.fxml").toURL();
+                Parent root = FXMLLoader.load(url);
 
-            hotel_stage.setScene(new Scene(root));
-            hotel_stage.setTitle("Bewerten");
-            hotel_stage.show();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
+                hotel_stage.setScene(new Scene(root));
+                hotel_stage.setTitle("Rate");
+                hotel_stage.show();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
+        else
+        {
+            System.out.print("Login First!\n");
+        }
+
     }
 
     @FXML
