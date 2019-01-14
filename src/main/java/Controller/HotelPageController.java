@@ -179,7 +179,7 @@ public class HotelPageController implements Initializable
             {
                 Image image = new Image(image_url);
                 hotel_image.setImage(image);
-                hotel_image.setFitWidth(300);
+                hotel_image.setFitWidth(500);
                 hotel_image.setPreserveRatio(true);
                 hotel_image.setStyle("-fx-opacity: 1");
 
@@ -188,7 +188,7 @@ public class HotelPageController implements Initializable
             {
                 Image image = new Image("/image/noimage.jpg");
                 hotel_image.setImage(image);
-                hotel_image.setFitWidth(300);
+                hotel_image.setFitWidth(500);
                 hotel_image.setPreserveRatio(true);
                 hotel_image.setStyle("-fx-opacity: 1");
                 System.out.print("No Image Found!\n"+ e +"\n");
@@ -238,7 +238,7 @@ public class HotelPageController implements Initializable
         }
         else
         {
-            stats = new ArrayList<>();
+            stats = new ArrayList<String>();
             stats.add("0");
             stats.add("0");
         }

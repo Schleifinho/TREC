@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="maven-mongodb" />
         <module name="T REC" />
+        <module name="TREC" />
       </profile>
     </annotationProcessing>
   </component>
