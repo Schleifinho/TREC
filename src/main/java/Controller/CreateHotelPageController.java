@@ -106,6 +106,7 @@ public class CreateHotelPageController
                 user.put("Description", description);
                 user.put("Interests", Arrays.asList(Interests));
                 user.put("Facilities", Arrays.asList(Facilities));
+                user.put("Stats", Arrays.asList("0","0","0"));
 
                 ObjectId imageID = saveImage(hotelname);
 

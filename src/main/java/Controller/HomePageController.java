@@ -26,6 +26,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -40,11 +42,12 @@ public class HomePageController implements Initializable
     static Stage open_stage;
     @FXML private Button button_login;
     @FXML private ListView listView;
-    @FXML private Label label;
+    @FXML private ListView weeklyListView;
     @FXML private Label hotelname;
-    @FXML private HBox listBox;
-
     public static final ObservableList data =
+            FXCollections.observableArrayList();
+
+    public static final ObservableList weekly =
             FXCollections.observableArrayList();
 
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -58,6 +61,8 @@ public class HomePageController implements Initializable
             button_login.setText("Login");
         }
 
+        setWeeklyHotel();
+
         MongoClient mongoClient = MongoClients.create();
         MongoDatabase db = mongoClient.getDatabase("OAD");
         MongoCollection<Document> collection = db.getCollection("Hotel");
@@ -67,6 +72,90 @@ public class HomePageController implements Initializable
 
         printHotels(documents);
 
+    }
+
+    private void setWeeklyHotel()
+    {
+        MongoClient mongoClient = MongoClients.create();
+        MongoDatabase db = mongoClient.getDatabase("OAD");
+        MongoCollection<Document> collection = db.getCollection("Hotel");
+
+        List<Document> hotels = (List<Document>) collection.find().into(
+                new ArrayList<Document>());
+
+        Document temp_hotel = null;
+        int temp_views = -1;
+        for(Document hotel : hotels)
+        {
+            List<String> stats = (List<String>) hotel.get("Stats");
+
+            int my_views = 0;
+            try
+            {
+                my_views = Integer.parseInt(stats.get(0));
+            }
+            catch(Exception e)
+            {
+                System.out.print(e + "\n");
+            }
+
+            if (my_views > temp_views)
+            {
+                temp_hotel = hotel;
+                temp_views = my_views;
+            }
+        }
+        if(temp_hotel != null)
+        {
+            printWeeklyHotel(temp_hotel);
+        }
+    }
+
+    private void printWeeklyHotel(Document hotel)
+    {
+
+        weekly.add(listWeeklyEntry(hotel));
+        weeklyListView.setItems(weekly);
+    }
+
+    public VBox listWeeklyEntry(Document document)
+    {
+        VBox vBox = new VBox();
+        vBox.setId(document.get("_id").toString());
+
+        ObjectId imageID = (ObjectId) document.get("ImageID");
+        String url = getFile(imageID);
+        ImageView imageView;
+        double height = 0;
+        try
+        {
+            Image image = new Image(url);
+            imageView = new ImageView(image);
+            imageView.setFitWidth(120);
+            imageView.setPreserveRatio(true);
+            height = image.getHeight() * 120.0/image.getWidth();
+
+        }
+        catch (Exception e)
+        {
+            Image image = new Image("/image/noimage.jpg");
+            imageView = new ImageView(image);
+            imageView.setFitHeight(120);
+            imageView.setPreserveRatio(true);
+            System.out.print("No Image Found!\n"+ e +"\n");
+        }
+
+        weeklyListView.setPrefHeight(height + 27);
+
+        Label hotelname = new Label(document.get("Hotelname").toString());
+        hotelname.setStyle("-fx-font-weight: bold;"+"-fx-font-size: 12");
+
+        vBox.getChildren().add(hotelname);
+        vBox.getChildren().add(imageView);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(2);
+
+        return vBox;
     }
 
     public HBox listEntry(Document document)
@@ -197,26 +286,57 @@ public class HomePageController implements Initializable
     {
         if(arg.getClickCount() == 2)
         {
-            loadHotelPage((HBox)listView.getSelectionModel().getSelectedItem());
+            HBox box = (HBox)listView.getSelectionModel().getSelectedItem();
+            if(!box.getId().equals(null))
+            {
+                loadHotelPage(new ObjectId(box.getId()));
+            }
             System.out.print("Double clicked " + listView.getSelectionModel().getSelectedItems().get(0));
         }
     }
 
-    public void loadHotelPage(HBox object)
+    @FXML
+    public void onWeeklyViewClick(MouseEvent arg)
     {
-        ObjectId id = new ObjectId(object.getId());
-        HotelPageController.initData(id);
+        if(arg.getClickCount() == 2)
+        {
+            VBox box = (VBox)weeklyListView.getSelectionModel().getSelectedItem();
+            System.out.print(box + "+++\n");
+            if(box != null)
+            {
+                loadHotelPage(new ObjectId(box.getId()));
+            }
+            System.out.print("Double clicked " + weeklyListView.getSelectionModel().getSelectedItems().get(0));
+        }
+    }
 
-        try
+    public void loadHotelPage(ObjectId id)
+    {
+        MongoClient mongoClient = MongoClients.create();
+        MongoDatabase db = mongoClient.getDatabase("OAD");
+        MongoCollection<Document> collection = db.getCollection("Hotel");
+
+        Document hotel = collection.find(eq("_id", id)).first();
+
+        if(hotel != null)
         {
-            URL url = new File("src/main/java/FXML/HotelPageFXML.fxml").toURL();
-            Parent root = FXMLLoader.load(url);
-            open_stage.setScene(new Scene(root));
-            open_stage.setTitle("Hotel Page");
-            open_stage.show();
-        } catch (Exception e)
+            HotelPageController.initData(id);
+
+            try
+            {
+                URL url = new File("src/main/java/FXML/HotelPageFXML.fxml").toURL();
+                Parent root = FXMLLoader.load(url);
+                open_stage.setScene(new Scene(root));
+                open_stage.setTitle("Hotel Page");
+                open_stage.show();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else
         {
-            e.printStackTrace();
+            System.out.print("Hotel not found!\n");
         }
     }
 
